@@ -666,4 +666,20 @@ class AdminController extends Controller
 
         return view('admin.members', $data);
     }
+
+    public function getBarangayClearancePage()
+    {
+        $data['title'] = "Barangay Clearance";
+        $data['records'] = Records::all();
+        $data['base_url'] = App::make("url")->to('/');
+        $data['prof_pic'] = UserProfile::where('user_id', Auth::user()->id)->select('user_profile_pic')->pluck('user_profile_pic');
+
+        return view('admin.certificates.bc', $data);
+    }
+
+    public function getDataForModal(Request $request){
+        $data = Records::where('id', $request->search)->get();
+
+        echo json_encode($data);
+    }
 }

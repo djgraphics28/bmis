@@ -50,6 +50,9 @@ Route::post('/change-password', 'AdminController@changeUserPassword');
 
 // barangay routes
 Route::get('/admin-member', 'AdminController@getMembersPage');
+Route::get('/admin-barangayclearance','AdminController@getBarangayClearancePage');
+
+Route::post('/get-data-for-modal','AdminController@getDataForModal');
 
 // barangay routes
 

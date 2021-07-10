@@ -193,6 +193,25 @@
             <i class="fa fa-archive"></i> <span>Members</span>
           </a>
         </li>
+        <li  class="treeview {{ strpos(Request::url(), 'admin-barangayclearance') == true ? 'active' : '' }}">
+            <a href="#">
+              <i class="fa fa-file"></i>
+              <span>Certificates</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              {{-- <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li> --}}
+                <li class="{{ strpos(Request::url(), 'admin-barangayclearance') == true ? 'active' : '' }}">
+                    <a href="{{ url('/admin-barangayclearance') }}">
+                    <i class="fa fa-circle-o"></i> <span>Barangay Clearance</span>
+                    </a>
+                </li>
+
+            </ul>
+          </li>
+
         {{-- <li class="{{ strpos(Request::url(), 'contribution') == true ? 'active' : '' }}">
           <a href="{{ url('/admin-senior-contributions') }}">
             <i class="glyphicon glyphicon-piggy-bank"></i> <span>Senior Citizen Contribution</span>
