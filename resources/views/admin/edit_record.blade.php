@@ -9,7 +9,7 @@
 
         <ol class="breadcrumb">
             <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="">Senior Citizen Records</li>
+            <li class="">Record Lists</li>
             <li class="active">Edit Record</li>
         </ol>
     </section>
@@ -92,7 +92,7 @@
                                     <label>Civil Status <span style="color:red;">*</span></label>
                                     <select name="civil_status" id="civil_status" class="form-control select2"  style="width: 100%;">
                                         @foreach ($civil_status as $item)
-                                            <option value="<?= $item->id ?>" selected="{{ !empty($row->civil_status) ? 'selected' : '' }}"><?= $item->name ?></option>
+                                            <option value="<?= $item->id ?>" {{ isset($records) && $row->civil_status == $item->id ? 'selected' : '' }}><?= $item->name ?></option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -101,10 +101,10 @@
                                 <div class="form-group">
                                     <label for="">Gender <span style="color:red;">*</span></label>
                                     <div class="row col-md-offset-1">
-                                        <input type="radio" name="gender" value="Male" class="minimal" checked="{{ $row->gender == 'Male' ? 'true' : 'false' }}">
+                                        <input type="radio" name="gender" value="Male" class="minimal" {{ $row->gender == 'Female' ? 'checked="true"' : 'checked="false"' }}>
                                         <i class="fa fa-male"></i> | Male
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <input type="radio" name="gender" value="Female" class="minimal" checked="{{ $row->gender == 'Female' ? 'true' : 'false' }}">
+                                        <input type="radio" name="gender" value="Female" class="minimal" >
                                         <i class="fa fa-female"></i> | Female
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@
                                 <label for="">Barangay <span style="color:red;">*</span></label>
                                 <select name="barangay" id="barangay" class="form-control select2" style="width: 100%;">
                                     @foreach ($barangays as $item)
-                                        <option value="<?= $item->id ?>" selected="{{ !empty($row->barangay) ? 'selected' : '' }}"><?= $item->name ?></option>
+                                        <option value="<?= $item->id ?>" {{ isset($records) && $row->barangay == $item->id ? 'selected' : '' }}><?= $item->name ?></option>
                                     @endforeach
                                 </select>
                             </div>
@@ -177,7 +177,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="">Last Name <span style="color:red;">*</span></label>
+                                <label for="">Extension Name <span style="color:red;">*</span></label>
                                 <input type="text" name="cp_ename" id="cp_ename" value="{{ $cs->cp_ename }}" style="text-transform: capitalize;" class="form-control">
                             </div>
                         </div>

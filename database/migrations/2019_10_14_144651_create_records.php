@@ -21,6 +21,12 @@ class CreateRecords extends Migration
             $table->string('ename')->nullable()->default(null);
             $table->string('gender', 10);
             $table->date('birthdate');
+            $table->string('birthplace');
+            $table->string('citizenship');
+            $table->string('hea');
+            $table->integer('bar_boardpasser');
+            $table->string('occupation');
+            $table->string('employment_status');
             $table->integer('civil_status');
             $table->string('unique_id_num', 50);
             $table->string('address');

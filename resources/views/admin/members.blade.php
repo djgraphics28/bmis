@@ -9,7 +9,7 @@
 
         <ol class="breadcrumb">
             <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Senior Citizen Records</li>
+            <li class="active">Records</li>
         </ol>
     </section>
 
@@ -18,7 +18,7 @@
         <!-- Default box -->
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Senior Citizens</h3>
+                <h3 class="box-title">{{$barangay}} Citizens</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -360,6 +360,7 @@
 
          /* datatable initialization */
         $('#records_tbl').DataTable({
+            responsive: true,
             processing: true,
             serverSide: true,
             ajax: "{{url('/admin-get-records')}}",

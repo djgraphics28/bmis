@@ -108,9 +108,9 @@ class AdminController extends Controller
     public function saveRecord(Request $request)
     {
         if (empty($request->id)) {
-            $this->validate($request, [
-                'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
+            // $this->validate($request, [
+            //     'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // ]);
 
             if ($request->hasFile('profile_photo')) {
                 $image = $request->file('profile_photo');
@@ -660,6 +660,8 @@ class AdminController extends Controller
     {
         $data['title'] = "Member List";
         $data['barangays'] = Barangay::all();
+        $data['barangay'] = "Binalonan";
+
         $data['civil_status'] = CivilStatus::all();
         $data['base_url'] = App::make("url")->to('/');
         $data['prof_pic'] = UserProfile::where('user_id', Auth::user()->id)->select('user_profile_pic')->pluck('user_profile_pic');
