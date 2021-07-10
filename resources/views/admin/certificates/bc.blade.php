@@ -49,12 +49,17 @@
                             <select name="search" id="search" class="form-control select2">
                                 <option selected disabled> Search and Select Name of Barangay Citizen </option>
                                 @foreach ($records as $item)
-                                    <option value="{{ $item->id }}">{{ $item->fname }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->fname . " " . $item->mname . " " . $item->lname . " " . $item->ename }}</option>
                                 @endforeach
                             </select>
                         </div>
-
                     </div>
+                    {{-- <div class="col-md-2">
+                        <label for=""></label>
+                        <div class="form-group">
+                            <button id="btn-search" class="btn btn-primary">Search</button>
+                        </div>
+                    </div> --}}
                 </div>
                 <hr>
                 <h3>Barangay Clearance Logs</h3>
@@ -91,6 +96,119 @@
         </div>
         <!-- /.box -->
 
+         <!-- View Record modal -->
+         <div class="modal fade" id="view-record" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">
+                                View Information
+                        </h4>
+                    </div>
+                    <div class="modal-body" style="background-color: #f1f1f1db!important;">
+                        <div class="row">
+                            <div class="col-md-3">
+
+                              <!-- Profile Image -->
+                              <div class="box box-primary">
+                                <div class="box-body box-profile">
+                                  <img class="profile-user-img img-responsive" id="prof_pic" src="" alt="User profile picture">
+
+                                  <h5 class="profile-username text-center" id="profile-username"></h5>
+
+                                  <p class="text-muted text-center" id="idnum"></p>
+
+                                  <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item">
+                                      <b>Age</b> <a class="pull-right" id="prof-age"></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                      <b>Birthday</b> <a class="pull-right" id="prof-bday"></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                      <b>Gender</b> <a class="pull-right" id="prof-gender"></a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- /.box-body -->
+                              </div>
+                              <!-- /.box -->
+                            </div>
+
+                            <!-- /.col -->
+                            <div class="col-md-9">
+                              <div class="nav-tabs-custom">
+                                <ul class="nav nav-tabs">
+                                  <li class="active"><a href="#info" data-toggle="tab" aria-expanded="false">Info</a></li>
+                                  <li class=""><a href="#cp" data-toggle="tab" aria-expanded="false">Contact Person</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                  <div class="tab-pane active" id="info">
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Civil Status</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" readonly="" value="{{ isset($value) ? $value->civil_status : '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Address</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" readonly="" value="{{ isset($value) ? $value->user_address : '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Street</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" readonly="" value="{{ isset($value) ? $value->user_street : '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Barangay</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" readonly="" value="{{ isset($value) ? $value->brgy : '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Phone Number</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" readonly="" value="{{ isset($value) ? $value->user_mobile_num : '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">Telephone Number</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" readonly="" value="{{ isset($value) ? $value->user_phone_num : '' }}">
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <!-- /.tab-pane -->
+                                  <div class="tab-pane" id="cp">
+
+                                  </div>
+                                  <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                              </div>
+                              <!-- /.nav-tabs-custom -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span class="pull-left"><i>Note: Barangay Certificates will be entered in the logs below.</i></span>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        {{-- <button type="submit" id="btn-bc"  class="btn btn-primary"><i class="fa fa-file" aria-hidden="true"></i>&nbsp;Generate Barangay Clearance</button> --}}
+                        <a href="{{ url('/barangay-clearance/1') }}" class="btn btn-lg btn-primary"><i class="fa fa-print"></i> </a>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.View Record modal -->
+
 
     </section>
     <!-- /.content -->
@@ -107,21 +225,17 @@
 <script>
     $(document).ready(function(){
 
-        $('#search').on('change', function(){
-            var search = $('#search').val();
-
-            if(search){
-                $.ajax({
-                    type : "POST",
-                    url : "{{ url('/get-data-for-modal')}}",
-                    data : { search : search },
-                    success : function(response){
-                        console.log(response);
-                    }
-                })
-            }
-            // alert(search);
+        $("#btn-bc").on('click', function(){
+            // $.ajax({
+            //     url: "{{ url('/barangay-clearance/{}') }}",
+            //     type: "POST",
+            //     success: function() {
+            //       console.log("ok");
+            //     }
+            // });
+            alert(this.value);
         })
+
         /* datatable initialization */
         $('#contributions_tbl').DataTable(); /* datatable initialization */
 
@@ -204,6 +318,22 @@
             caret_pos = updated_len - original_len + caret_pos;
             input[0].setSelectionRange(caret_pos, caret_pos);
         }
+        /* View Button */
+            $('#search').on('change',function(){
+                $('#view-record').modal('show');
+                // if(this.value != ""){
+                //     // alert(this.value);
+                //     $.ajax({
+                //         type : "POST",
+                //         url : "{{ url('/get-data-for-modal') }}",
+                //         data : id : this.value,
+                //         sucess : function(items){
+                //             console.log(items);
+                //         }
+                //     });
+                // }
+            });
+        /* View Button */
 
         $("#btn-edit").on('click', function() {
             $.ajax({

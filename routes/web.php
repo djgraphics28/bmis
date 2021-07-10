@@ -54,6 +54,8 @@ Route::get('/admin-barangayclearance','AdminController@getBarangayClearancePage'
 
 Route::post('/get-data-for-modal','AdminController@getDataForModal');
 
+Route::get('/barangay-clearance/{id}', 'AdminController@pdfBarangayClearance');
+
 // barangay routes
 
 /* DataTables */

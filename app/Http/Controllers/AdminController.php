@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use PDF;
+use Dompdf\Dompdf;
+
 
 /* Models */
 use File;
@@ -683,5 +686,16 @@ class AdminController extends Controller
         $data = Records::where('id', $request->search)->get();
 
         echo json_encode($data);
+    }
+
+    public function pdfBarangayClearance($id){
+        $data = Records::find($id);
+        // dd($data);
+        $pdf = PDF::loadView('admin.certificates.barangayclearance', ['data' => $data])->setPaper('Letter', 'portrait');
+        // dd($pdf);
+        $filename = "barangay_clearance_" . $data->fname;
+
+        return $pdf->stream($filename .'.pdf');
+        // return $pdf->download($filename . '.pdf');
     }
 }
