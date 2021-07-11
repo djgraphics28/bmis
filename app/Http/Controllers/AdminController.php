@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use PDF;
+use QrCode;
 use Dompdf\Dompdf;
+use NumberFormatter;
 
 
 /* Models */
@@ -689,12 +691,28 @@ class AdminController extends Controller
     }
 
     public function pdfBarangayClearance($id){
+        //base url for images
+        $base_url = App::make("url")->to('/');
+
+        // $locale = 'en_US';
+        // $nf = new \NumberFormatter($locale, \NumberFormatter::ORDINAL);
+
+        $numberFormatter = new \NumberFormatter('en_US', \NumberFormatter::ORDINAL);
+        $dateissued = $numberFormatter->format(date('d'));
+
+        //find specific records from Records
         $data = Records::find($id);
-        // dd($data);
-        $pdf = PDF::loadView('admin.certificates.barangayclearance', ['data' => $data])->setPaper('Letter', 'portrait');
-        // dd($pdf);
+
+        //initialize qrcode
+        $qrcode = QrCode::size(100)->generate('barangayclearance-'.$data->fname.'_'.$data->mname.'_'.$data->lname.'_'.$data->ename.'_POBLACION_BINALONAN_'.date('d-m-Y'));
+
+        //initialize dompdf
+        $pdf = PDF::loadView('admin.certificates.barangayclearance', ['data' => $data, 'qrcode' => $qrcode, 'base_url' => $base_url, 'dateissued' => $dateissued])->setPaper('Letter', 'portrait');
+
+        //name of pdf file
         $filename = "barangay_clearance_" . $data->fname;
 
+        //preview of document
         return $pdf->stream($filename .'.pdf');
         // return $pdf->download($filename . '.pdf');
     }

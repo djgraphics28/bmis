@@ -35,7 +35,7 @@
         }
     #main    {
      background-color: #FFFFFF;
-     width: 85%;
+     width: 90%;
      margin: 10px auto;
      }
 
@@ -82,12 +82,32 @@
         font-size: 10px;
         text-align: right;
     }
+
+    .qrcode{
+        margin-left : 315px;
+        margin-top: 800px;
+        position: fixed;
+
+    }
+    #mainlogo{
+        position: fixed;
+    }
+    #logobin{
+        width: 100px;
+        height : 100px;
+        margin-top: 20px;
+        margin-left : 50px;
+
+    }
     </style>
   <body>
       <div id="border">
       <div id="main">
         <div class="container">
             <div class="row">
+                <div id="mainlogo">
+                    <img id="logobin" src="{{ $base_url.'/public/images/binalonanlogo.png' }}" alt="logo">
+                </div>
                 <div class="col-md-12">
                 <center>
                     <p>
@@ -105,16 +125,15 @@
                 <br>
                 <p>TO WHOM IT MAY CONCERN:</p>
 
-                <p class="content1">This is to certify <strong><i>Darwin Flores Ibay</i></strong>, 26 years of age, single, is a resident of Sta. Fe Subd., Barangay Poblacion, Binalonan, Pangasinan.</p>
+                <p class="content1">This is to certify <strong><i>{{ $data->fname ." ". $data->mname ." ". $data->lname . (isset($data->ename) ? " " .$data->ename : "") }}</i></strong>, 26 years of age, {{ $data->civil_status == 1 ? "single" : "married" }}, is a resident of {{ $data->address}}.</p>
 
-                <p>This further certifies that based on records kept in this office, he/she has no pending case filed in the Katarungang Pambarangay or no derogatory record whatsoever.</p>
+                <p class="content1">This further certifies that based on records kept in this office, he/she has no pending case filed in the Katarungang Pambarangay or no derogatory record whatsoever.</p>
 
                 <p class="content1">This furthermore certifies that he/she is a person of good moral character, peaceful and law-abiding citizen whose reputation in the community is beyond reproach.</p>
 
                 <p class="content1">This certification is issued upon request of <strong>Mr. Ibay</strong>, for whatever legal intent it may serve.</p>
 
-                <p class="content1">Issued 8th day of July, 2021.</p>
-                <br>
+                <p class="content1">Issued {{ $dateissued }} day of {{ date('F, Y')}}.</p>
                 <p>Prepared by:</p>
 
                 <p class="brgysec"><strong><i>MICHELLE B. CRECENCIA</i></strong></p>
@@ -125,12 +144,17 @@
                 <p class="chairman"><strong><i>JUAN Z. DELOS SANTOS</i></strong></p>
                 <i><p class="brgyctitle">Punong Barangay</p></i>
 
-                <p class="applicant"><strong><i>Darwin Flores Ibay</i></strong></p>
+                <p class="applicant"><strong><i>{{ $data->fname ." ". $data->mname ." ". $data->lname . (isset($data->ename) ? " " .$data->ename : "") }}</i></strong></p>
                 <i><p class="apptitle">Applicant</p></i>
 
                 <br>
 
-                <p class="issued">CTC. No: 08472496<br>Issued on: <?php echo date('M d, Y');?><br>Issued at: Binalonan, Pangasinan</p>
+                <div class="qrcode">
+                    <img src="data:image/png;base64, {!! base64_encode($qrcode) !!}">
+                </div>
+
+
+                <p class="issued">CTC. No: 08472496<br>Issued on: <?php echo date('F d, Y');?><br>Issued at: Binalonan, Pangasinan</p>
                 <p class="dryseal">INVALID WITHOUT DRY SEAL <br>VERIFICATION SIGNATURE <br>AND DATE</p>
                 </div>
             </div>

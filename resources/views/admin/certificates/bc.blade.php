@@ -198,9 +198,9 @@
                     </div>
                     <div class="modal-footer">
                         <span class="pull-left"><i>Note: Barangay Certificates will be entered in the logs below.</i></span>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        {{-- <button type="submit" id="btn-bc"  class="btn btn-primary"><i class="fa fa-file" aria-hidden="true"></i>&nbsp;Generate Barangay Clearance</button> --}}
-                        <a href="{{ url('/barangay-clearance/1') }}" class="btn btn-lg btn-primary"><i class="fa fa-print"></i> </a>
+                        <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        {{-- <button id="btn-bc"  class="btn btn-primary"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;Generate Barangay Clearance</button> --}}
+                        <a id="btn-bc" class="btn btn-lg btn-primary"><i class="fa fa-print"></i> </a>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -227,14 +227,28 @@
 
         $("#btn-bc").on('click', function(){
             // $.ajax({
-            //     url: "{{ url('/barangay-clearance/{}') }}",
+            //     url: "{{ url('/barangay-clearance/{1}') }}",
             //     type: "POST",
             //     success: function() {
             //       console.log("ok");
             //     }
             // });
-            alert(this.value);
+
+            // $.ajax({
+            //    type:'POST',
+            //    url:"{{ url('/barangay-clearance/{this.value}') }}",
+            //    data:'_token = <?php echo csrf_token() ?>',
+            //    success:function(data) {
+            //       console.log("ok");
+            //    }
+            // });
+            // alert(this.value);
         })
+
+        // $("#cancel").on('click', function(){
+        //     alert(1);
+        //     $("#search").val() = null;
+        // })
 
         /* datatable initialization */
         $('#contributions_tbl').DataTable(); /* datatable initialization */
@@ -321,6 +335,17 @@
         /* View Button */
             $('#search').on('change',function(){
                 $('#view-record').modal('show');
+
+                var id = this.value;
+
+                // alert(id);
+                // $('#btn-bc').text(this.value);
+                var a = document.getElementById('btn-bc');
+
+                var href = "{{ url('/barangay-clearance') }}"+"/"+id;
+
+                // alert(href);
+                a.setAttribute("href", href);
                 // if(this.value != ""){
                 //     // alert(this.value);
                 //     $.ajax({
