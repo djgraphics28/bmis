@@ -51,10 +51,16 @@ Route::post('/change-password', 'AdminController@changeUserPassword');
 // barangay routes
 Route::get('/admin-member', 'AdminController@getMembersPage');
 Route::get('/admin-barangayclearance','AdminController@getBarangayClearancePage');
+Route::get('/admin-businessclearance','AdminController@getBusinessClearancePage');
+Route::get('/admin-closureclearance','AdminController@getClosureClearancePage');
+Route::get('/admin-indigencycertificate','AdminController@getIndigencyCertificatePage');
 
 Route::post('/get-data-for-modal','AdminController@getDataForModal');
 
 Route::get('/barangay-clearance/{id}', 'AdminController@pdfBarangayClearance');
+Route::get('/business-clearance/{id}', 'AdminController@pdfBusinessClearance');
+Route::get('/closure-clearance/{id}', 'AdminController@pdfClosureClearance');
+Route::get('/indigency-certificate/{id}', 'AdminController@pdfIndigencyCertificate');
 
 // barangay routes
 

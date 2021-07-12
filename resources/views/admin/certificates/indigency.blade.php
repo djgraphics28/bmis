@@ -200,7 +200,7 @@
                         <span class="pull-left"><i>Note: Barangay Certificates will be entered in the logs below.</i></span>
                         <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         {{-- <button id="btn-bc"  class="btn btn-primary"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;Generate Barangay Clearance</button> --}}
-                        <a id="btn-bc" class="btn btn-lg btn-primary"><i class="fa fa-file-pdf-o"></i>Generate Barangay Clearance </a>
+                        <a id="btn-bc" class="btn btn-lg btn-primary"><i class="fa fa-print"></i> </a>
                     </div>
                 </div>
                 <!-- /.modal-content -->

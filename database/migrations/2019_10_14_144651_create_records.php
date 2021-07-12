@@ -32,6 +32,7 @@ class CreateRecords extends Migration
             $table->string('address');
             $table->string('street');
             $table->integer('barangay');
+            $table->string('title');
             $table->string('profile_pic')->nullable()->default(null);
             $table->string('phone_num', 50)->nullable()->default(null);
             $table->string('tel_num', 50)->nullable()->default(null);

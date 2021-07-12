@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script> window.Laravel = { csrfToken: '{{ csrf_token() }}'} </script>
 
-    <title>{{$title}} | BIMS</title>
+    <title> BIMS | {{$title}} </title>
 
     <link rel="icon" href="{{ asset('public/favicon.ico') }}" type="image/ico" />
     <!-- Tell the browser to be responsive to screen width -->
@@ -193,7 +193,24 @@
             <i class="fa fa-archive"></i> <span>Members</span>
           </a>
         </li>
-        <li  class="treeview {{ strpos(Request::url(), 'admin-barangayclearance') == true ? 'active' : '' }}">
+        <li  class="treeview {{ strpos(Request::url(), 'admin-managehousehold') == true ? 'active' : '' }}">
+            <a href="#">
+              <i class="fa fa-file"></i>
+              <span>Household</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              {{-- <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li> --}}
+                <li class="{{ strpos(Request::url(), 'admin-managehousehold') == true ? 'active' : '' }}">
+                    <a href="{{ url('/admin-managehousehold') }}">
+                    <i class="fa fa-circle-o"></i> <span>Manage Household</span>
+                    </a>
+                </li>
+            </ul>
+          </li>
+        <li  class="treeview {{ strpos(Request::url(), 'admin-barangayclearance') == true ||  strpos(Request::url(), 'admin-businessclearance') == true  ||  strpos(Request::url(), 'admin-closureclearance') == true  ||  strpos(Request::url(), 'admin-indigencycertificate') == true? 'active' : '' }}">
             <a href="#">
               <i class="fa fa-file"></i>
               <span>Certificates</span>
@@ -206,6 +223,24 @@
                 <li class="{{ strpos(Request::url(), 'admin-barangayclearance') == true ? 'active' : '' }}">
                     <a href="{{ url('/admin-barangayclearance') }}">
                     <i class="fa fa-circle-o"></i> <span>Barangay Clearance</span>
+                    </a>
+                </li>
+
+                <li class="{{ strpos(Request::url(), 'admin-businessclearance') == true ? 'active' : '' }}">
+                    <a href="{{ url('/admin-businessclearance') }}">
+                    <i class="fa fa-circle-o"></i> <span>Business Clearance</span>
+                    </a>
+                </li>
+
+                <li class="{{ strpos(Request::url(), 'admin-closureclearance') == true ? 'active' : '' }}">
+                    <a href="{{ url('/admin-closureclearance') }}">
+                    <i class="fa fa-circle-o"></i> <span>Business Closure Clearance</span>
+                    </a>
+                </li>
+
+                <li class="{{ strpos(Request::url(), 'admin-indigencycertificate') == true ? 'active' : '' }}">
+                    <a href="{{ url('/admin-indigencycertificate') }}">
+                    <i class="fa fa-circle-o"></i> <span>Indigency Certificate</span>
                     </a>
                 </li>
 
